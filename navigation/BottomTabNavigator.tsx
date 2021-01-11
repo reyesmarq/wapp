@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createStackNavigator} from "@react-navigation/stack";
-import Icon from "react-native-vector-icons/Ionicons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import * as React from "react";
 
 import Colors from "../constants/Colors";
@@ -23,14 +23,18 @@ export default function BottomTabNavigator() {
         name="TabOne"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({color}) => <Icon name="ios-code" size={40} color={color} />,
+          tabBarIcon: ({color}) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({color}) => <Icon name="ios-code" size={40} color={color} />,
+          tabBarIcon: ({color}) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -39,9 +43,9 @@ export default function BottomTabNavigator() {
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
-// function TabBarIcon(props: {name: string; backgroundColor: string}) {
-//   return <Ionicons size={30} style={{marginBottom: -3}} {...props} />;
-// }
+function TabBarIcon(props: {name: string; color: string}) {
+  return <Ionicons size={30} style={{marginBottom: -3}} {...props} />;
+}
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab

@@ -5,8 +5,10 @@ import {
 } from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 import * as React from "react";
-import {ColorSchemeName} from "react-native";
+import {ColorSchemeName, Text, View} from "react-native";
 import Colors from "../constants/Colors";
+import Entypo from "react-native-vector-icons/Entypo";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import NotFoundScreen from "../screens/NotFoundScreen";
 import {RootStackParamList} from "../types";
@@ -50,6 +52,19 @@ function RootNavigator() {
         name="Root"
         options={{
           title: "wapp",
+          headerRight: () => (
+            <View
+              style={{
+                flexDirection: "row",
+                width: 60,
+                justifyContent: "space-between",
+                marginRight: 10,
+              }}
+            >
+              <FontAwesome name="search" color="white" size={22} />
+              <Entypo name="dots-three-vertical" color="white" size={22} />
+            </View>
+          ),
         }}
         component={BottomTabNavigator}
       />
