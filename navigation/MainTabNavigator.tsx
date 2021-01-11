@@ -1,5 +1,5 @@
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createStackNavigator} from "@react-navigation/stack";
+import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import * as React from "react";
 
@@ -9,35 +9,41 @@ import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import {BottomTabParamList, TabOneParamList, TabTwoParamList} from "../types";
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+// const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const MainTab = createMaterialTopTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
+    <MainTab.Navigator
       initialRouteName="TabOne"
-      tabBarOptions={{activeTintColor: Colors[colorScheme].tint}}
+      tabBarOptions={{
+        activeTintColor: Colors[colorScheme].background,
+        style: {
+          backgroundColor: Colors[colorScheme].tint,
+        },
+        indicatorStyle: {
+          backgroundColor: Colors[colorScheme].background,
+          height: 4
+        },
+      }}
     >
-      <BottomTab.Screen
+      <MainTab.Screen
         name="TabOne"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({color}) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
+          tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
-      <BottomTab.Screen
+      <MainTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({color}) => (
-            <TabBarIcon name="ios-code" color={color} />
-          ),
+          tabBarIcon: ({color}) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
-    </BottomTab.Navigator>
+    </MainTab.Navigator>
   );
 }
 
@@ -57,7 +63,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{headerTitle: "Tab One Title"}}
+        options={{headerShown: false}}
       />
     </TabOneStack.Navigator>
   );
@@ -71,7 +77,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{headerTitle: "Tab Two Title"}}
+        options={{headerShown: false}}
       />
     </TabTwoStack.Navigator>
   );
