@@ -2,6 +2,7 @@ import React from "react";
 import {FlatList, ImageBackground} from "react-native";
 import chatRoomData from "../data/Chats";
 import ChatMessage from "../components/ChatMessage";
+import InputBox from "../components/InputBox";
 // import BG from ""
 
 const ChatRoomScren = () => {
@@ -15,6 +16,7 @@ const ChatRoomScren = () => {
         renderItem={({item}) => <ChatMessage message={item} />}
         inverted
       />
+      <InputBox />
     </ImageBackground>
   );
 };
