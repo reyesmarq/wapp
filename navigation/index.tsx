@@ -13,6 +13,8 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import {RootStackParamList} from "../types";
 import MainTabNavigator from "./MainTabNavigator";
+import ChatsScreen from "../screens/ChatsScreen";
+import ChatRoomScren from "../screens/ChatRoomScreen";
 
 // If you are not familiar with React Navigation, we recommend going through the
 // "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
@@ -69,6 +71,27 @@ function RootNavigator() {
           ),
         }}
         component={MainTabNavigator}
+      />
+      <Stack.Screen
+        name="ChatRoom"
+        component={ChatRoomScren}
+        options={({route}) => ({
+          title: route.params.name,
+          headerRight: () => (
+            <View
+              style={{
+                flexDirection: "row",
+                width: 100,
+                justifyContent: "space-between",
+                marginRight: 10,
+              }}
+            >
+              <FontAwesome name="video-camera" color="white" size={22} />
+              <FontAwesome name="phone" color="white" size={22} />
+              <Entypo name="dots-three-vertical" color="white" size={22} />
+            </View>
+          ),
+        })}
       />
       <Stack.Screen
         name="NotFound"
